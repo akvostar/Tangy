@@ -16,9 +16,20 @@ Active :
 Price :
 <input type="number" @bind="@Product.Price" @bind:event="oninput" />
 <br />
-test
+Property Selected: @selectedProp
+<br />
+Product Properties:
+<select @bind="selectedProp">
+    @foreach(var prop in Product.ProductProperties)
+    {
+        <option value="@prop.Key">@prop.Key</option>
+    }
+</select><br />
+
+
 
 @code {
+    private string selectedProp = "";
     Tangy_Models.LearnBlazorModels.Demo_Product Product = new()
         {
             Id = 1,

@@ -1,0 +1,10 @@
+﻿@page "/"
+@namespace TangyWeb_Server.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+<div style="background-color:aqua">
+    _Host.cshtml
+    <component type="typeof(App)" render-mode="ServerPrerendered" />
+</div>

@@ -12,14 +12,21 @@
 </CascadingValue>
 
 <p><b>@messageText</b></p>
-<_AnotherChildComponent placeholder="Placeholder from Parent"></_AnotherChildComponent>
+<_AnotherChildComponent maxlength="5" placeholder="EnterName From Parent2"></_AnotherChildComponent>
 
 <div class="row">
     <button class="btn btn-success" @onclick="()=>childComp.ToastrSuccess()">Show SweetAlert</button>
 </div>
-
+ 
 
 @code {
+    public Dictionary<string, object> InputAttributesFromParent { get; set; } = new Dictionary<string, object>()
+    {
+        {"required", "required"},
+        {"placeholder", "EnterName From Parent"},
+        {"maxlength", 5},
+    };
+
     private _ChildComponent childComp;
 
     public string MessageForGrandChild = "This message is from your grand parent (ParentComponent)";

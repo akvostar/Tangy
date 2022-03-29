@@ -1,0 +1,31 @@
+﻿<div>
+    <h3>_LifeCycleChild</h3>
+    <hr />
+    @foreach(var item in EventType)
+    {
+        @item
+        <hr />
+    }
+</div>
+
+@code {
+
+    [Parameter]
+    public int CountValue { get; set; }
+
+    [Parameter]
+    public List<string> EventType { get; set; }
+
+
+    protected override void OnInitialized()
+    {
+        EventType.Add(DateTime.Now.ToString("mm:ss ffff") + ": Child - OnInitialized is called");
+    }
+
+    protected override void OnParametersSet()
+    {
+        EventType.Add(DateTime.Now.ToString("mm:ss ffff") + ": Child - OnParametersSet is called");
+    }
+
+
+}

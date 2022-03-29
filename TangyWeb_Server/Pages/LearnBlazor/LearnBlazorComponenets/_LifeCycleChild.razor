@@ -1,5 +1,5 @@
 ﻿<div>
-    <h3>_LifeCycleChild</h3>
+    <h3>_LifeCycleChild - @CountValue</h3>
     <hr />
     @foreach(var item in EventType)
     {
@@ -19,12 +19,31 @@
 
     protected override void OnInitialized()
     {
-        EventType.Add(DateTime.Now.ToString("mm:ss ffff") + ": Child - OnInitialized is called");
+        string str = DateTime.Now.ToString("mm:ss ffff") + ": Child - OnInitialized is called";
+        EventType.Add(str);
+        Console.WriteLine(str);
     }
 
     protected override void OnParametersSet()
     {
-        EventType.Add(DateTime.Now.ToString("mm:ss ffff") + ": Child - OnParametersSet is called");
+        string str = DateTime.Now.ToString("mm:ss ffff") + ": Child - OnParametersSet is called";
+        EventType.Add(str);
+        Console.WriteLine(str);
+    }
+
+    protected override bool ShouldRender()
+    {
+        string str = DateTime.Now.ToString("mm:ss ffff") + ": Child - ShouldRender is called";
+        EventType.Add(str);
+        Console.WriteLine(str);
+        return true;
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        string str = DateTime.Now.ToString("mm:ss ffff") + ": Child - OnAfterRender is called";
+        EventType.Add(str);
+        Console.WriteLine(str);
     }
 
 

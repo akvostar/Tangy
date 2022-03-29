@@ -5,27 +5,23 @@
 <p role="status">Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-<br /> 
+<br />
 
 @Count <button @onclick=StartCountdown>Start Countdown</button>
 
 <div class="border" style="display:flex;justify-content:space-around">
     <div>
         <h3>Parent</h3>
-    <hr />
+        <hr />
         @foreach(var item in EventType)
         {
             @item
-                <hr />
+            <hr />
         }
     </div>
     <_LifeCycleChild @ref="childComp" EventType="@EventType" CountValue="@currentCount"></_LifeCycleChild>
 
 </div>
-
-
-
-
 
 @code {
     private _LifeCycleChild childComp;
@@ -37,28 +33,37 @@
 
     private void IncrementCount()
     {
+        EventType.Clear();
         currentCount++;
     }
 
 
     protected override void OnInitialized()
     {
-        EventType.Add(DateTime.Now.ToString("mm:ss ffff") + ": Parent - OnInitialized is called");
+        string str = DateTime.Now.ToString("mm:ss ffff") + ": Parent - OnInitialized is called";
+        EventType.Add(str);
+        Console.WriteLine(str);
     }
 
     protected override async Task OnInitializedAsync()
     {
-        EventType.Add(DateTime.Now.ToString("mm:ss ffff") + ": Parent - OnInitializedAsync is called");
+        string str = DateTime.Now.ToString("mm:ss ffff") + ": Parent - OnInitializedAsync is called";
+        EventType.Add(str);
+        Console.WriteLine(str);
     }
 
     protected override void OnParametersSet()
     {
-        EventType.Add(DateTime.Now.ToString("mm:ss ffff") + ": Parent - OnParametersSet is called");
+        string str = DateTime.Now.ToString("mm:ss ffff") + ": Parent - OnParametersSet is called";
+        EventType.Add(str);
+        Console.WriteLine(str);
     }
 
     protected override async Task OnParametersSetAsync()
     {
-        EventType.Add(DateTime.Now.ToString("mm:ss ffff") + ": Parent - OnParametersSetAsync is called");
+        string str = DateTime.Now.ToString("mm:ss ffff") + ": Parent - OnParametersSetAsync is called";
+        EventType.Add(str);
+        Console.WriteLine(str);
     }
 
     protected override void OnAfterRender(bool firstRender)
@@ -72,22 +77,29 @@
             currentCount = 999;
 
         }
-        EventType.Add(DateTime.Now.ToString("mm:ss ffff") + ": Parent - OnAfterRender is called");
+        string str = DateTime.Now.ToString("mm:ss ffff") + ": Parent - OnAfterRender is called";
+        EventType.Add(str);
+        Console.WriteLine(str);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        EventType.Add(DateTime.Now.ToString("mm:ss ffff") + ": Parent - OnAfterRenderAsync is called");
+        string str = DateTime.Now.ToString("mm:ss ffff") + ": Parent - OnAfterRenderAsync is called";
+        EventType.Add(str);
+        Console.WriteLine(str);
     }
 
     protected override bool ShouldRender()
     {
-        EventType.Add(DateTime.Now.ToString("mm:ss ffff") + ": Parent - ShouldRender is called");
+        string str = DateTime.Now.ToString("mm:ss ffff") + ": Parent - ShouldRender is called";
+        EventType.Add(str);
+        Console.WriteLine(str);
         return true;
     }
 
     void StartCountdown()
     {
+        EventType.Clear();
         var timer = new Timer(TimeCallBack, null, 1000, 1000);
     }
 
@@ -96,7 +108,7 @@
         if(Count > 0)
         {
             Count--;
-            //InvokeAsync(StateHasChanged);
+           // InvokeAsync(StateHasChanged);
         }
     }
 }

@@ -24,7 +24,7 @@
 </div>
 
 @code {
-    private _LifeCycleChild childComp;
+    private _LifeCycleChild? childComp;
 
     private int currentCount = 0;
     //List<string> EventType = new List<string>();
@@ -38,11 +38,12 @@
     }
 
 
-    protected override void OnInitialized()
+    protected override async void OnInitialized()
     {
         string str = DateTime.Now.ToString("mm:ss ffff") + ": Parent - OnInitialized is called";
         EventType.Add(str);
         Console.WriteLine(str);
+        await Task.Yield();
     }
 
     protected override async Task OnInitializedAsync()
@@ -50,6 +51,7 @@
         string str = DateTime.Now.ToString("mm:ss ffff") + ": Parent - OnInitializedAsync is called";
         EventType.Add(str);
         Console.WriteLine(str);
+        await Task.Yield();
     }
 
     protected override void OnParametersSet()
@@ -64,6 +66,7 @@
         string str = DateTime.Now.ToString("mm:ss ffff") + ": Parent - OnParametersSetAsync is called";
         EventType.Add(str);
         Console.WriteLine(str);
+        await Task.Yield();
     }
 
     protected override void OnAfterRender(bool firstRender)
@@ -87,6 +90,7 @@
         string str = DateTime.Now.ToString("mm:ss ffff") + ": Parent - OnAfterRenderAsync is called";
         EventType.Add(str);
         Console.WriteLine(str);
+        await Task.Yield();
     }
 
     protected override bool ShouldRender()
@@ -103,7 +107,7 @@
         var timer = new Timer(TimeCallBack, null, 1000, 1000);
     }
 
-    void TimeCallBack(object state)
+    void TimeCallBack(object? state)
     {
         if(Count > 0)
         {
